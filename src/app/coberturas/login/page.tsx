@@ -26,7 +26,7 @@ export default function LoginPage() {
         setLoading(false);
       } else {
         // eslint-disable-next-line @next/next/no-location-assign-relative-destination
-        window.location.href = "/";
+       window.location.href = "/coberturas";
       }
     } catch {
       setError("Ocurrió un error inesperado");
