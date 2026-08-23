@@ -6,12 +6,12 @@ export default async function Home() {
   const session = await getServerSession(authOptions);
 
   if (!session) {
-    redirect("/login");
+    redirect("/coberturas/login");
   }
 
   if (session.user.role === "ADMIN") {
-    redirect("/admin");
+    redirect("/coberturas/admin");
   } else {
-    redirect("/personal");
+    redirect("/coberturas/limpiadora");
   }
 }
