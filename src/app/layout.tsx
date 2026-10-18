@@ -19,8 +19,8 @@ export const metadata: Metadata = {
   description: "Sistema de Control de Horas Extras y Tareas Adicionales AFEMEC",
   manifest: "/manifest.json",
   icons: {
-    icon: "/logo.jpg",
-    apple: "/logo.jpg",
+    icon: "/icon-192.png",
+    apple: "/icon-192.png",
   },
   appleWebApp: {
     title: "Extras AFEMEC",
@@ -35,6 +35,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="es"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();window.__pwaPrompt=e;});`,
+          }}
+        />
+      </head>
       <body className="min-h-full flex flex-col">
         <PwaRegister />
         <InstallPrompt />

@@ -1,8 +1,10 @@
-const CACHE_NAME = 'afemec-extras-cache-v1';
+const CACHE_NAME = 'afemec-extras-cache-v2';
 const ASSETS_TO_CACHE = [
   '/',
   '/manifest.json',
-  '/logo.jpg'
+  '/logo.jpg',
+  '/icon-192.png',
+  '/icon-512.png'
 ];
 
 self.addEventListener('install', (event) => {
@@ -13,7 +15,11 @@ self.addEventListener('install', (event) => {
 });
 
 self.addEventListener('activate', (event) => {
-  event.waitUntil(self.clients.claim());
+  event.waitUntil(
+    caches.keys().then((keys) =>
+      Promise.all(keys.filter((k) => k !== CACHE_NAME).map((k) => caches.delete(k)))
+    ).then(() => self.clients.claim())
+  );
 });
 
 self.addEventListener('fetch', (event) => {
